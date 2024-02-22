@@ -1,12 +1,12 @@
+import { Slot } from "expo-router";
 import React from "react";
-import { Text, SafeAreaView } from "react-native";
 
-const HomePage = () => {
+const HomePageLayout = () => {
   return (
-    <SafeAreaView>
-      <Text>HomePage</Text>
-    </SafeAreaView>
+    <>
+      <Slot />
+    </>
   );
 };
 
-export default HomePage;
+export default HomePageLayout;
