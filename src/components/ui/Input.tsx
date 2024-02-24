@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from "react-native";
+import { View, TextInput } from "react-native";
 import React, { useState } from "react";
 
 const Input = ({
@@ -22,9 +22,9 @@ const Input = ({
   return (
     <View
       className={`items-center flex-row border-b justify-between gap-2 border-neutral-500 
+        ${isFocused ? "border-indigo" : ""}
         ${isInValide ? "border-red" : ""} 
         ${isDisabled ? "border-neutral-300" : ""}
-        ${isFocused ? "border-indigo" : ""}
       `}
     >
       <TextInput
@@ -33,9 +33,9 @@ const Input = ({
         value={value}
         onChangeText={setValue}
         editable={!isDisabled}
-        keyboardType="phone-pad"
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        secureTextEntry={type === "password"}
       />
       {children}
     </View>
