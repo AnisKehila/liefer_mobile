@@ -20,7 +20,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/images/logo.png",
         "backgroundColor": "#1B0637"
-      }
+      },
+      "softwareKeyboardLayoutMode": "pan"
     },
     "plugins": [
       "expo-router",
