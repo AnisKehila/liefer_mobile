@@ -1,4 +1,4 @@
-**# Liefer Mobile App**
+# Liefer Mobile App
 
 ## About
 
