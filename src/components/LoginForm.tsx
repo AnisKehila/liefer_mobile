@@ -1,26 +1,24 @@
 import React, { useMemo, useState } from "react";
-import {
-  Image,
-  ImageSourcePropType,
-  Pressable,
-  Text,
-  View,
-} from "react-native";
+import { Pressable, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Input from "./ui/Input";
 import { Link } from "expo-router";
+import Or from "./ui/Or";
+import SocialAuth from "./SocialAuth";
+import { isPhoneValide } from "@/utils/isPhoneValide";
 
 const LoginForm = () => {
-  const [pnum, setPnum] = useState<string>("");
+  const [pnum, setPnum] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordShown, setPasswordShown] = useState(false);
   const isInValide: boolean = useMemo(() => {
-    const regex = /^(\+213|0)(5|6|7)[0-9]{8}$/;
-    return !regex.test(pnum);
+    return isPhoneValide(pnum);
   }, [pnum]);
-  const googleLogo =
-    require("@/assets/images/google-icon.png") as ImageSourcePropType;
+
   return (
     <View className="mt-6 flex-1">
       <View className="ml-2">
+        <Text className="text-lg font-medium">Phone number</Text>
         <Input
           value={pnum}
           isInValide={pnum.length > 0 && isInValide}
@@ -28,12 +26,24 @@ const LoginForm = () => {
           setValue={setPnum}
           type="number"
         >
-          <Ionicons name="call-outline" size={20} color="rgb(115 115 115)" />
+          <Ionicons name="call-outline" size={20} />
         </Input>
       </View>
-      <Text className="text-sm text-neutral-500 mt-2">
-        Enter your phone to continue
-      </Text>
+      <View className="ml-2 mt-6">
+        <Text className="text-lg font-medium">Password</Text>
+        <Input
+          placeHolder="GUdm7euCxgA"
+          value={password}
+          setValue={setPassword}
+          type={passwordShown ? "text" : "password"}
+        >
+          <Ionicons
+            name={passwordShown ? "eye-off-outline" : "eye-outline"}
+            size={20}
+            onPress={() => setPasswordShown(!passwordShown)}
+          />
+        </Input>
+      </View>
       <View className="flex-1 justify-end">
         <Text className="text-sm text-neutral-500 mb-2">
           Don't have an account yet?{" "}
@@ -41,24 +51,11 @@ const LoginForm = () => {
             <Text className="text-violet underline">Sign Up</Text>
           </Link>
         </Text>
-        <Pressable className="bg-red items-center p-3 rounded-sm">
+        <Pressable className="bg-red items-center p-3 rounded-sm active:bg-rose-700">
           <Text className="text-white">Let's Go</Text>
         </Pressable>
-        {/* Or line */}
-        <View className="flex-row items-center mt-2">
-          <View className="flex-1 h-[1px] bg-neutral-500" />
-          <Text className="text-neutral-500 px-2">Or</Text>
-          <View className="flex-1 h-[1px] bg-neutral-500" />
-        </View>
-        {/* Social login links */}
-        <View className="flex-row items-center justify-evenly mt-4">
-          <Pressable className="rounded-full active:bg-neutral-200">
-            <Image source={googleLogo} className="w-14 h-14" />
-          </Pressable>
-          <Pressable className="rounded-full active:bg-neutral-200">
-            <Ionicons name="logo-facebook" size={56} color={"#4267B2"} />
-          </Pressable>
-        </View>
+        <Or />
+        <SocialAuth />
       </View>
     </View>
   );

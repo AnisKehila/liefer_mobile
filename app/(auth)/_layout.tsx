@@ -13,12 +13,10 @@ const AuthLayout = () => {
       className="flex-1"
     >
       <SafeAreaView className="flex-1">
-        <View className=" min-h-[32%] items-center justify-center">
+        <View className="items-center mt-auto mb-16">
           <Image source={logo} className="w-32 h-32" />
         </View>
-        <View className="flex-1 bg-neutral-100 rounded-tr-[68px] shadow-2xl shadow-black pt-16 pb-12 px-7">
-          <Slot />
-        </View>
+        <Slot />
       </SafeAreaView>
     </LinearGradient>
   );
