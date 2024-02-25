@@ -13,7 +13,7 @@ const Input = ({
   children?: React.ReactElement;
   isDisabled?: boolean;
   isInValide?: boolean;
-  type?: "text" | "password";
+  type?: "text" | "password" | "number";
   value: string;
   placeHolder: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
@@ -32,6 +32,7 @@ const Input = ({
         placeholder={placeHolder}
         value={value}
         onChangeText={setValue}
+        keyboardType={type === "number" ? "number-pad" : "default"}
         editable={!isDisabled}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}

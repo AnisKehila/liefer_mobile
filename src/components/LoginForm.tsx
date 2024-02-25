@@ -26,7 +26,7 @@ const LoginForm = () => {
           isInValide={pnum.length > 0 && isInValide}
           placeHolder="0X xx xx xx xx"
           setValue={setPnum}
-          type="text"
+          type="number"
         >
           <Ionicons name="call-outline" size={20} color="rgb(115 115 115)" />
         </Input>
