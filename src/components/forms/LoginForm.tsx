@@ -41,7 +41,9 @@ const LoginForm = () => {
       Toast.show({
         type: "error",
         position: "bottom",
-        text1: err.response?.data?.message,
+        text1:
+          err.response?.data?.message ||
+          "Network error please try again later!",
         text1Style: { fontSize: 16, textTransform: "capitalize" },
       });
     },
