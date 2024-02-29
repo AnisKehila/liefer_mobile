@@ -3,6 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Image, ImageSourcePropType, Text, View } from "react-native";
 import React from "react";
 import { Slot } from "expo-router";
+import Animated, { SlideInDown, SlideInUp } from "react-native-reanimated";
 
 const AuthLayout = () => {
   const logo =
@@ -13,9 +14,12 @@ const AuthLayout = () => {
       className="flex-1"
     >
       <SafeAreaView className="flex-1">
-        <View className="items-center mt-auto mb-16">
+        <Animated.View
+          entering={SlideInUp}
+          className="items-center mt-auto mb-16"
+        >
           <Image source={logo} className="w-32 h-32" />
-        </View>
+        </Animated.View>
         <Slot />
       </SafeAreaView>
     </LinearGradient>
