@@ -31,7 +31,6 @@ const SignUpForm = () => {
         text1: "Signed up succesfully!",
         text1Style: { fontSize: 16 },
       });
-      console.log(data);
     },
     onError: (err: any) => {
       Toast.show({

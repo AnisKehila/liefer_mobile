@@ -7,36 +7,34 @@ import Or from "../ui/Or";
 import SocialAuth from "../SocialAuth";
 import { isPhoneValide } from "@/utils/schemes";
 import Toast from "react-native-toast-message";
-import Animated, { FadeInUp, FadeInDown } from "react-native-reanimated";
+import Animated, { FadeInDown } from "react-native-reanimated";
 import { useMutation } from "@tanstack/react-query";
 import api from "@/axios/api";
 import { ActivityIndicator } from "react-native";
+import { useAuth } from "@/contexts/AuthContext";
 
 const LoginForm = () => {
   const [pnum, setPnum] = useState("");
   const [password, setPassword] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
+  const { onLogin } = useAuth();
   const isInValide: boolean = useMemo(() => {
     return !isPhoneValide(pnum);
   }, [pnum]);
 
   const { isPending, mutate } = useMutation({
     mutationFn: async () => {
-      const resp = await api.post("/user/login", {
-        phone: pnum,
-        password: password,
-      });
-      return resp.data;
+      const resp = await api.post("/user/login", { phone: pnum, password });
+      const cookies = resp.headers["set-cookie"];
+
+      return {
+        user: resp.data.user as user,
+        accessToken: resp.data.accessToken as string,
+        cookie: cookies![0],
+      };
     },
-    onSuccess: (data) => {
-      //TODO: save token into local storage
-      Toast.show({
-        type: "info",
-        position: "bottom",
-        text1: "logged in",
-        text1Style: { fontSize: 16, textTransform: "capitalize" },
-      });
-    },
+    onSuccess: ({ user, accessToken, cookie }) =>
+      onLogin({ user, accessToken, cookie }),
     onError: (err: any) => {
       Toast.show({
         type: "error",
