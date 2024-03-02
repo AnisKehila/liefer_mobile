@@ -7,3 +7,4 @@ type user = {
   isEmailConfirmed: boolean;
   isPhoneConfirmed: boolean;
 };
+type jwt = { exp: number; iat: number; id: number; role: "USER" | "ADMIN" };
