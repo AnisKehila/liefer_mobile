@@ -24,21 +24,27 @@ export const useApi = (): AxiosInstance => {
           cookie: refrechToken,
         },
       });
-      setToken(resp.data.token);
+      return resp.data.token;
     } catch (e: any) {
       onLogOut();
+      return;
     }
   };
   secureApi.interceptors.request.use(async (req) => {
     if (!token) {
-      await refrechReq();
+      const token = (await refrechReq()) as string;
+      setToken(token);
+      req.headers.Authorization = `Bearer ${token}`;
       return req;
     }
     if (token) {
       const decoded: jwt = jwtDecode(token);
       const currentTime = Date.now() / 1000; // Convert milliseconds to seconds
       if (decoded.exp < currentTime) {
-        await refrechReq();
+        const token = (await refrechReq()) as string;
+        setToken(token);
+        req.headers.Authorization = `Bearer ${token}`;
+        return req;
       }
     }
     return req;

@@ -1,8 +1,14 @@
-import { View } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Home = () => {
-  return <View className="flex-1 justify-center"></View>;
+  const { user } = useAuth();
+  return (
+    <View className="">
+      <Text>{user!.name}</Text>
+    </View>
+  );
 };
 
 export default Home;
