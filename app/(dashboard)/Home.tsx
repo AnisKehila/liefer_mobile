@@ -5,7 +5,7 @@ import { useAuth } from "@/contexts/AuthContext";
 const Home = () => {
   const { user } = useAuth();
   return (
-    <View className="">
+    <View className="flex-1">
       <Text>{user!.name}</Text>
     </View>
   );

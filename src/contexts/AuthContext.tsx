@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(user);
       setToken(accessToken);
       await AsyncStorage.setItem("refreshToken", cookie);
-      router.push("/(dashboard)/Home");
+      router.push("/(dashboard)/home");
       Toast.show({
         type: "info",
         position: "bottom",

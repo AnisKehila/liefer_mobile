@@ -19,7 +19,7 @@ const Page = () => {
     })();
   }, []);
   if (isLoading) return;
-  if (user) return <Redirect href="/(dashboard)/Home" />;
+  if (user) return <Redirect href="/(dashboard)/home" />;
   return <Redirect href="/(auth)/SignIn" />;
 };
 

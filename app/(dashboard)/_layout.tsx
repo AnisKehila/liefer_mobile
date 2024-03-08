@@ -1,16 +1,15 @@
-import { SafeAreaView } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
-import { Image, ImageSourcePropType, Text, View } from "react-native";
-import React from "react";
+import Tabs from "@/components/Tabs";
 import { Slot } from "expo-router";
-import Animated, { SlideInDown, SlideInUp } from "react-native-reanimated";
-
+import React from "react";
+import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 const DashLayout = () => {
-  const logo =
-    require("@/assets/images/logo-vertical.png") as ImageSourcePropType;
   return (
-    <SafeAreaView className="flex-1">
-      <Slot />
+    <SafeAreaView className="flex-1 bg-neutral-50">
+      <View className="flex-1">
+        <Slot />
+      </View>
+      <Tabs />
     </SafeAreaView>
   );
 };
