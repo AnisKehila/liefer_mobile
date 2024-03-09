@@ -7,10 +7,12 @@ import GeneralInfo from "@/components/home/GeneralInfo";
 const Home = () => {
   const { user } = useAuth();
   return (
-    <View className="p-5">
-      <Header name={user!.name} />
-      <GeneralInfo />
-    </View>
+    <ScrollView showsVerticalScrollIndicator={false} className="p-4">
+      <View className="mb-12">
+        <Header name={user!.name} />
+        <GeneralInfo />
+      </View>
+    </ScrollView>
   );
 };
 
