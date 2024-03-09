@@ -31,7 +31,7 @@ const TabsLink = ({
   return (
     <Link href={href} className={`flex-1 text-center`}>
       <Animated.View
-        style={[animatedStyle]}
+        style={animatedStyle}
         className={`p-5 rounded-full ${isActive ? "bg-neutral-100" : ""}`}
       >
         <Ionicons name={isActive ? icon : icon + "-outline"} size={30} />

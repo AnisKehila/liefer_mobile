@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const DashLayout = () => {
   return (
     <SafeAreaView className="flex-1 bg-neutral-50">
-      <View className="flex-1">
+      <View className="flex-1 pb-3">
         <Slot />
       </View>
       <Tabs />
